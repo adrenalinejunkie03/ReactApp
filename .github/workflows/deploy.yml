@@ -6,7 +6,7 @@ on:
       - main
 
 permissions:
-  contents : write
+  contents: write
 
 jobs:
   deploy:
@@ -16,17 +16,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Setup Node js
-        uses: actions/setup-node@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
 
       - name: Install dependencies
         run: npm install
 
-      - name: Build React App
+      - name: Build React app
         run: npm run build
 
-      - name: Deploy to Github Pages
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }} 
-          publish_build: ./dist
+          github_token: ${{ secrets.V_R }}
+          publish_dir: ./dist
